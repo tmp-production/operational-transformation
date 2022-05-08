@@ -40,7 +40,7 @@ import static java.util.stream.Collectors.toList;
  * Class containing the diff, match and patch methods.
  * Also contains the behaviour settings.
  */
-class DiffUtils {
+public class DiffUtils {
     public static final DiffUtils INSTANCE = new DiffUtils();
 
     // Defaults.
