@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2/')
+    }
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'junit:junit:4.13.2'
+    implementation 'com.google.guava:guava:31.1-jre'
+    implementation 'commons-lang:commons-lang:2.6'
+    implementation 'io.netty:netty-all:4.1.76.Final'
+}
+
+group = 'com.github.tmp-production'
+version = '1.0-SNAPSHOT'
+description = 'Operational Transformation library'
+java.sourceCompatibility = JavaVersion.VERSION_1_8
