@@ -5,7 +5,7 @@ import static ot.internal.Transform.transformMarkupAgainstDelete;
 /**
  * Created by Stas on 3/12/16.
  */
-class Delete extends TextChange {
+public class Delete extends TextChange {
     final int len;
 
     public Delete(int len) {

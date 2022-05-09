@@ -5,7 +5,7 @@ import static ot.internal.Transform.transformMarkupAgainstInsert;
 /**
  * Created by Stas on 3/12/16.
  */
-class Insert extends TextChange {
+public class Insert extends TextChange {
     final String text;
 
     public Insert(String text) {

@@ -3,7 +3,7 @@ package ot.internal;
 /**
  * Created by Stas on 3/12/16.
  */
-class Retain extends TextChange {
+public class Retain extends TextChange {
     private final int length;
 
     public Retain(int length) {
