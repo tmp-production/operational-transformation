@@ -17,9 +17,9 @@ public class IO {
 
     public static Change fromString(String str) {
         String[] split = StringUtils.splitPreserveAllTokens(str, '|');
-        if (split.length != 2)
+        if (split.length != 3)
             throw new IllegalArgumentException("Wrong format, expected 3 blocks separated by '|', but was: " + str);
-
+        int revision = Integer.parseInt(split[2]);
         List<Change> res = new ArrayList<>();
         String stream = split[0];
         String inserts = unescape(split[1]);
@@ -45,6 +45,7 @@ public class IO {
                     res.add(new Delete(len));
                     break;
             }
+            res.get(res.size() - 1).revision = revision;
         }
 
         return new Changes(res);
@@ -69,6 +70,7 @@ public class IO {
     static String toString(Changes ch) {
         StringBuilder insert = new StringBuilder();
         StringBuilder stream = new StringBuilder();
+        int revision = 0;
         for (Change each : ch.changes) {
             if (each instanceof Retain)
                 stream.append("=").append(each.offset());
@@ -79,9 +81,10 @@ public class IO {
                 //todo: implement method in change (getText or similar)
                 insert.append(escape(((Insert) each).text));
             }
+            revision = each.revision;
         }
         return stream.append("|")
-                .append(insert)
+                .append(insert).append("|").append(revision)
                 .toString();
     }
 
