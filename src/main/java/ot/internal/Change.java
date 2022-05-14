@@ -9,7 +9,8 @@ public abstract class Change {
 
     abstract int offset();
 
+    public int revision;
     int revision() {
-        return 0;
+        return revision;
     }
 }
