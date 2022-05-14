@@ -53,9 +53,13 @@ public class IO {
     }
 
     public static String toString(Change ch) {
-        return ch instanceof Changes
-                ? toString((Changes) ch)
-                : toString(new Changes(ch));
+        if(ch instanceof Changes)
+            return toString((Changes) ch);
+        else{
+            Changes changes = new Changes(ch);
+            changes.revision = ch.revision;
+            return toString(changes);
+        }
     }
 
     public static String toDebugString(Changes ch) {
