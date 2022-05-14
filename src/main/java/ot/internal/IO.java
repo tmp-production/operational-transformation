@@ -45,10 +45,11 @@ public class IO {
                     res.add(new Delete(len));
                     break;
             }
-            res.get(res.size() - 1).revision = revision;
         }
+        Changes out = new Changes(res);
+        out.revision = revision;
 
-        return new Changes(res);
+        return out;
     }
 
     public static String toString(Change ch) {
@@ -70,7 +71,6 @@ public class IO {
     static String toString(Changes ch) {
         StringBuilder insert = new StringBuilder();
         StringBuilder stream = new StringBuilder();
-        int revision = 0;
         for (Change each : ch.changes) {
             if (each instanceof Retain)
                 stream.append("=").append(each.offset());
@@ -81,10 +81,9 @@ public class IO {
                 //todo: implement method in change (getText or similar)
                 insert.append(escape(((Insert) each).text));
             }
-            revision = each.revision;
         }
         return stream.append("|")
-                .append(insert).append("|").append(revision)
+                .append(insert).append("|").append(ch.revision)
                 .toString();
     }
 

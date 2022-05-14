@@ -6,12 +6,8 @@ public class Main {
         Text bobsText = Text.empty();
         Changes aliceChange = aliceText.diff("Hi ");
         Changes bobsChange = bobsText.diff("Alice");
-        for(Change ch : aliceChange.changes){
-           ch.revision = 24;
-        }
-        for(Change ch : bobsChange.changes){
-            ch.revision = 3;
-        }
+        aliceChange.revision = 25;
+        bobsChange.revision = 5;
 
         String aliceSerialized = IO.toString(aliceChange);
         String bobSerialized = IO.toString(bobsChange);
@@ -24,7 +20,7 @@ public class Main {
 
         System.out.println(IO.toString(aliceRecovered));
         System.out.println(IO.toString(bobRecovered));
-        System.out.println(aliceRecovered.changes.get(0).revision);
+        System.out.println(aliceRecovered.revision);
         System.out.println(bobRecovered.revision);
     }
 }
